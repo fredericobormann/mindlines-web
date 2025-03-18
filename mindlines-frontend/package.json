@@ -1,5 +1,5 @@
 {
-  "name": "nuxt-app",
+  "name": "mindlines-app",
   "private": true,
   "type": "module",
   "scripts": {
@@ -10,7 +10,9 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@hebilicious/vue-query-nuxt": "^0.3.0",
     "@nuxt/ui": "^2.21.1",
+    "@tanstack/vue-query": "^5.68.0",
     "nuxt": "^3.16.0",
     "vue": "^3.5.13",
     "vue-router": "^4.5.0"

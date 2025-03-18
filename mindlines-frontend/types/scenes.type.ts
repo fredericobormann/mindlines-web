@@ -11,17 +11,22 @@ export type Character = typeof characters[number];
 export type Line = {
   character: Character,
   line: string,
-  correctAnswers?: number,
+  reviewTimes?: {
+    again: string,
+    hard: string,
+    good: string,
+    easy: string,
+  },
+  dueTime: Date,
 }
 
-export type Answer = 'correct' | 'wrong';
+export const answers = {
+  again: 1,
+  hard: 2,
+  good: 3,
+  easy: 4,
+};
 
-export function answerLine(line: Line, answer: Answer): Line {
-  const correctAnswers = answer === 'correct' ? (line.correctAnswers ?? 0) + 1 : 0;
-  return {
-    ...line,
-    correctAnswers,
-  }
-}
+export type Answer = keyof typeof answers;
 
 export type SceneContent = Scene & { content: Line[] }
