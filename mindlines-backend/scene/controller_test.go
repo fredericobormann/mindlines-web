@@ -19,8 +19,11 @@ func TestController_GetSceneList(t *testing.T) {
 
 	assert.Equal(t, 200, w.Code)
 
-	_, err := helper.Unmarshal[[]MetaScene](w.Body.Bytes())
-	assert.NoError(t, err)
+	res, err := helper.Unmarshal[[]MetaScene](w.Body.Bytes())
+	if assert.NoError(t, err) {
+		name := (*res)[0].Name
+		assert.Equal(t, "Testscene", name)
+	}
 }
 
 func TestController_GetScene(t *testing.T) {

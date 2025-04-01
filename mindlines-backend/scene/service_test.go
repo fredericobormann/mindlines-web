@@ -33,8 +33,14 @@ func TestService_LearnLine(t *testing.T) {
 func TestService_GetAll(t *testing.T) {
 	tm := setupTest()
 	defer cleanUp()
-	_, err := tm.Service.GetAll()
-	assert.NoError(t, err)
+	scenes, err := tm.Service.GetAll()
+	if err != nil {
+		t.Errorf("GetAll failed with: %v", err)
+	}
+	if len(scenes) == 0 {
+		t.Errorf("GetAll returned no scenes")
+	}
+	assert.Equal(t, scenes[0].Name, "Testscene")
 }
 
 func TestService_GetByIndex(t *testing.T) {
