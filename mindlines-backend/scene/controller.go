@@ -13,6 +13,12 @@ type Controller struct {
 	FSRS    fsrs.FSRS
 }
 
+func (controller *Controller) RegisterRoutes(router *gin.RouterGroup) {
+	router.GET("/scenes", controller.GetSceneList)
+	router.GET("/scenes/:id", controller.GetScene)
+	router.POST("/scenes/:id", controller.LearnLine)
+}
+
 func (controller *Controller) GetSceneList(c *gin.Context) {
 	scenes, err := controller.Service.GetAll()
 	if err != nil {

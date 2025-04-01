@@ -30,9 +30,7 @@ func main() {
 		log.Printf("No allowed origin configured. Using same-origin instead.")
 	}
 
-	api.GET("/scenes", sceneModule.Controller.GetSceneList)
-	api.GET("/scenes/:id", sceneModule.Controller.GetScene)
-	api.POST("/scenes/:id", sceneModule.Controller.LearnLine)
+	sceneModule.Controller.RegisterRoutes(api)
 
 	err = r.Run(":8080")
 	if err != nil {
